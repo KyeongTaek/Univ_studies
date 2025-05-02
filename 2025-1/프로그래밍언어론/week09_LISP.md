@@ -14,7 +14,7 @@
 ### atomic symbol
 최소 단위. 대문자나 숫자로 구성되며, 시작은 대문자이다
 ### s-expression
-- atomic symbol이나, atomic symbol들의 나열이다
+- 하나의 atomic symbol, 혹은 atomic symbol들의 나열이다
     - ex. `(A.(B.C))`
 
 - s-expression은 list notation으로 표기할 수도 있다
@@ -23,7 +23,7 @@
     * false의 의미로도 사용된다
     * ex. `(A B)` => `(A.(B.NIL))`
         * 마치 연결리스트에서 head를 옮겨가듯이
-        * NIL은 괄호의 수만큼 필요하다
+        * NIL은 list nontation에서 괄호쌍의 수만큼 필요하다
 
 
 ## Elementary functions
@@ -34,11 +34,11 @@
 - +따옴표: list를 데이터로 보겠다는 의미
 
 ### 2. cdr
-- s-expression 상에서의 뒷부분을 반환한다
-- 모든 s-expression은 2개의 list의 결합으로 생각할 수 있기 때문에, 그 중 뒤의 list를 반환하는 것이다
+- list에서 가장 앞에 있는 element를 제외한 뒷부분을 반환한다
 
 ### 3. cons
-- list의 맨 앞에 s-expression을 삽입한다
+- syntax: `(cons s-expr list)`
+- list의 맨 앞에 s-expr을 삽입한다
 - ex. `(cons 'a '(b c))` => `(a b c)`
 - ex. `(cons 'a 'b)` => `(a.b)`
     - .이 있다면 list가 아니다!(그저 s-expression)
@@ -46,7 +46,8 @@
 - ex. `(car '(cons a (b c)))` => `cons`
     - 따옴표 주의하기!!
 - ex. `(car (cons 'a'(b c)))` => `a`
-- ex. `(car  (cons a(b c)))` => `a의 값`    - a, b, c는 변수나 함수로 취급된다!
+- ex. `(car  (cons a(b c)))` => `a의 값
+	- a, b, c는 변수나 함수로 취급된다!
 
 ### 4. eq
 - s-expr1과 s-expr2가 같은 **메모리주소**를 가진다면 T를, 다르다면 NIL을 반환한다
